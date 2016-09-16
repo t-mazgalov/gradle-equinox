@@ -1,5 +1,32 @@
 apply plugin: 'groovy'
 
+task createClasspathManifest {
+    def outputDir = file("$buildDir/$name")
+
+    inputs.files sourceSets.main.runtimeClasspath
+    outputs.dir outputDir
+
+    doLast {
+        outputDir.mkdirs()
+        file("$outputDir/plugin-classpath.txt").text = sourceSets.main.runtimeClasspath.join("\n")
+    }
+}
+
 dependencies {
     compile gradleApi()
+    compile 'org.codehaus.groovy:groovy-all:2.4.4'
+    testCompile gradleTestKit()
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.spockframework:spock-core:1.0-groovy-2.4'
+
+    testRuntime files(tasks.createClasspathManifest)
+}
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    outputs.upToDateWhen {false}
+    systemProperty 'buildDir', buildDir
 }
