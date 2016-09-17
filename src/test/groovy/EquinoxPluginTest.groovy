@@ -39,12 +39,12 @@ plugins {
         when:
         def result = GradleRunner.create()
                 .withProjectDir(testBuildDir)
+                .withArguments('copyEquinoxRunScripts', 'buildEquinoxConfig', '-i', '-s')
                 .withPluginClasspath(pluginClasspath)
                 .build()
 
         then:
         printTestOutput result
-        result.output.contains('Success!!!')
     }
 
     void printTestOutput(def testResult) {
