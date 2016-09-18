@@ -39,7 +39,7 @@ plugins {
         when:
         def result = GradleRunner.create()
                 .withProjectDir(testBuildDir)
-                .withArguments('copyEquinoxRunScripts', 'buildEquinoxConfig', '-i', '-s')
+                .withArguments('createEquinoxContainer', '-i', '-s')
                 .withPluginClasspath(pluginClasspath)
                 .build()
 
