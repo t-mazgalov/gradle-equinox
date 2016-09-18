@@ -216,29 +216,3 @@ class CreateEquinoxContainer extends DefaultTask{
         result
     }
 }
-/*def bundlesList = configurations.bundlesLoader.findResults { jar ->
-                    if(!jar.name.contains('sources')) { // Exclude sources
-                        jar.withInputStream { stream ->
-                            JarInputStream jarInputStream = null
-                            try {
-                                jarInputStream = new JarInputStream(stream)
-                                java.util.jar.Manifest mf = jarInputStream.getManifest();
-                                if(mf != null) {
-                                    if(mf.mainAttributes.containsKey(new java.util.jar.Attributes.Name('Fragment-Host'))) {
-                                        "reference:file:$jar.path@1"
-                                    } else {
-                                        "reference:file:$jar.path@1:start"
-                                    }
-                                }
-                            } finally {
-                                if(jarInputStream != null) {
-                                    jarInputStream.close()
-                                }
-                                if(stream != null) {
-                                    stream.close()
-                                }
-                            }
-                        }
-                    }
-                }*/
-
