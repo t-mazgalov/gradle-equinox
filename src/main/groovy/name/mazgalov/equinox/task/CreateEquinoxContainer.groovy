@@ -184,7 +184,7 @@ class CreateEquinoxContainer extends DefaultTask{
      * reference:file:&lt;file-path&gt;@&lt;start-lervel&gt;[:&lt;auto-start-flag&gt;]
      */
     protected String generateInstallationBundlesList() {
-        def result = bundlesInstallationMap.collect { startLevel, configurations ->
+        def result = bundlesInstallationMap.collect {int startLevel, List configurations ->
             configurations.findResults { configuration ->
                 configuration.findResults { file ->
                     file.withInputStream { stream ->
