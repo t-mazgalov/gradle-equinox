@@ -24,8 +24,7 @@ class CreateEquinoxContainer extends DefaultTask{
      * The property is introduced in order to create multiple different instances.
      */
     @Input
-    @Optional
-    def containerName = 'equinox'
+    def containerName
 
     /**
      * The Equinox kernel dependency.
@@ -57,7 +56,10 @@ class CreateEquinoxContainer extends DefaultTask{
      * Sets the Equinox as dependency to the kernel configuration.
      * Creates an addition task which generates the Equinox startup script based on the OS.
      */
-    CreateEquinoxContainer() {
+    @Override
+    Task configure(Closure configureClosure) {
+        super.configure configureClosure
+
         group 'Equinox Generation'
         description 'Creates an Equinox container instance'
 
@@ -211,7 +213,7 @@ class CreateEquinoxContainer extends DefaultTask{
                     }
                 }.join(',')
             }.join(',')
-        }.join(',')
+        }.join(',') //TODO replace join with first
         logger.info "Generated installation property value: $result"
         result
     }
