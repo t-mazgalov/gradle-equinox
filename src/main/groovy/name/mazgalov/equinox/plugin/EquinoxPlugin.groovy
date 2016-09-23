@@ -14,6 +14,8 @@ class EquinoxPlugin implements Plugin<Project> {
         }
 
         // Defines the default task for creation of Equinox container
-        project.tasks.create 'createEquinoxContainer', CreateEquinoxContainer.class
+        project.tasks.create 'createEquinoxContainer', CreateEquinoxContainer.class, {
+            containerName = 'equinox'
+        }
     }
 }
